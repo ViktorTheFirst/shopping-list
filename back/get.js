@@ -3,6 +3,7 @@ module.exports = (request, response) => {
     case '/list':
       response.statusCode = 200;
       response.setHeader('Content-Type', 'application/json');
+      console.group('FETCHED data', request.data);
       response.write(JSON.stringify(request.data));
       response.end();
       break;

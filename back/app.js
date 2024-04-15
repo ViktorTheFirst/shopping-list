@@ -18,6 +18,7 @@ fs.readFile('DB.txt', 'utf8', (err, fileData) => {
 });
 
 server.on('request', (request, response) => {
+  console.log('Method', request.method);
   switch (request.method) {
     case 'GET':
       request.data = data;
