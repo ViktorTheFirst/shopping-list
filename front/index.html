@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shoping List</title>
+    <link rel="stylesheet" href="/front/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="top-part">
+        <h2>Shoping List <img src="/front/images/icon.png" alt="icon" /></h2>
+        <div class="row">
+          <input
+            type="text"
+            autocomplete="off"
+            id="input-box"
+            placeholder="Add Item"
+          />
+          <button
+            id="add-btn"
+            onclick="addItem(document.getElementById('input-box').value, false)"
+          >
+            Add
+          </button>
+        </div>
+        <ul id="list-container"></ul>
+      </div>
+      <div class="bottom-part">
+        <div class="col">
+          <button class="group-btn" id="delete-list-btn">Delete List</button>
+          <button class="group-btn" id="refresh-btn">Refresh</button>
+          <button class="group-btn" id="save-btn">Save</button>
+        </div>
+      </div>
+    </div>
+    <script src="/front/script.js"></script>
+  </body>
+</html>
