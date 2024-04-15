@@ -5,8 +5,10 @@ const saveBtn = document.getElementById('save-btn');
 const deleteListBtn = document.getElementById('delete-list-btn');
 const refreshBtn = document.getElementById('refresh-btn');
 
+const mainURL = 'https://worried-jumpsuit-toad.cyclic.app';
+
 const fetchList = async () => {
-  const response = await fetch('http://localhost:2604/list');
+  const response = await fetch(`${mainURL}/list`);
   const list = await response.json();
 
   while (listContainer.firstChild) {
@@ -21,7 +23,7 @@ const fetchList = async () => {
 };
 
 const deleteList = async () => {
-  await fetch('http://localhost:2604/list', {
+  await fetch(`${mainURL}/list`, {
     method: 'DELETE',
     mode: 'cors',
     headers: {
@@ -52,7 +54,7 @@ const createArrayFromUl = () => {
 const saveList = async () => {
   const updatedList = createArrayFromUl();
 
-  await fetch('http://localhost:2604/list', {
+  await fetch(`${mainURL}/list`, {
     method: 'POST',
     mode: 'cors',
     body: JSON.stringify({ listData: updatedList }),
