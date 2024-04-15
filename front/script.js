@@ -96,6 +96,10 @@ const handleRefreshClick = () => {
 fetchList();
 
 listContainer.addEventListener('click', handleClick);
+
 deleteListBtn.addEventListener('click', deleteList);
+
 refreshBtn.addEventListener('click', handleRefreshClick);
+refreshBtn.addEventListener('touchend', handleRefreshClick);
+
 saveBtn.addEventListener('click', saveList);
