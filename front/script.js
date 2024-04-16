@@ -11,7 +11,9 @@ const mainURL =
   /* 'http://localhost:2604'; */ 'https://worried-jumpsuit-toad.cyclic.app';
 
 const fetchList = async () => {
-  const response = await fetch(`${mainURL}/list`);
+  const response = await fetch(`${mainURL}/list`, {
+    mode: 'no-cors',
+  });
   const list = await response.json();
 
   while (listContainer.firstChild) {
