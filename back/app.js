@@ -4,10 +4,11 @@ const port = process.env.PORT || 2604;
 
 const server = http.createServer();
 const get = require('./get');
+const filePath = './tmp/DB.txt';
 
 let data = [];
 
-fs.readFile('tmp/DB.txt', 'utf8', (err, fileData) => {
+fs.readFile(filePath, 'utf8', (err, fileData) => {
   if (err) {
     console.error('There was an error reading the file:', err);
   } else {
@@ -39,7 +40,7 @@ server.on('request', (request, response) => {
 
         data = json.listData;
 
-        fs.writeFile('tmp/DB.txt', stringData, (err) => {
+        fs.writeFile(filePath, stringData, (err) => {
           if (err) {
             console.error('There was an error writing the file:', err);
           } else {
@@ -56,7 +57,7 @@ server.on('request', (request, response) => {
 
     case 'DELETE':
       data = [];
-      fs.writeFile('tmp/DB.txt', '', (err) => {
+      fs.writeFile(filePath, '', (err) => {
         if (err) {
           console.error('There was an error clearing the file:', err);
         } else {
