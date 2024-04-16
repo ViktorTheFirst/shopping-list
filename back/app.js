@@ -1,11 +1,11 @@
-var http = require('http');
-var fs = require('fs');
-var port = process.env.PORT || 2604;
+const http = require('http');
+const fs = require('fs');
+const port = process.env.PORT || 2604;
 
-var server = http.createServer();
-var get = require('./get');
+const server = http.createServer();
+const get = require('./get');
 
-var data = [];
+const data = [];
 
 fs.readFile('DB.txt', 'utf8', (err, fileData) => {
   if (err) {
@@ -26,16 +26,16 @@ server.on('request', (request, response) => {
       break;
 
     case 'POST':
-      var chunks = [];
+      let chunks = [];
 
       request.on('data', (chunk) => {
         chunks.push(chunk);
       });
 
       request.on('end', () => {
-        var acc = Buffer.concat(chunks);
-        var stringData = acc.toString();
-        var json = JSON.parse(stringData);
+        const acc = Buffer.concat(chunks);
+        const stringData = acc.toString();
+        const json = JSON.parse(stringData);
 
         data = json.listData;
 
