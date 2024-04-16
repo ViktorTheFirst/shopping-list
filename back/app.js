@@ -46,7 +46,9 @@ server.on('request', (request, response) => {
             console.log('File has been written');
           }
         });
-
+        response.setHeader('Access-Control-Allow-Origin', '*');
+        response.setHeader('Access-Control-Allow-Headers', '*');
+        response.setHeader('Access-Control-Allow-Methods', '*');
         response.statusCode = 200;
         response.end();
       });
@@ -61,6 +63,9 @@ server.on('request', (request, response) => {
           console.log('File has been cleared');
         }
       });
+      response.setHeader('Access-Control-Allow-Origin', '*');
+      response.setHeader('Access-Control-Allow-Headers', '*');
+      response.setHeader('Access-Control-Allow-Methods', '*');
       response.statusCode = 200;
       response.end();
       break;
