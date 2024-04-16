@@ -5,7 +5,7 @@ const port = process.env.PORT || 2604;
 const server = http.createServer();
 const get = require('./get');
 
-const data = [];
+let data = [];
 
 fs.readFile('DB.txt', 'utf8', (err, fileData) => {
   if (err) {

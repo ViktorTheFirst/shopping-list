@@ -5,8 +5,6 @@ const saveBtn = document.getElementById('save-btn');
 const deleteListBtn = document.getElementById('delete-list-btn');
 const refreshBtn = document.getElementById('refresh-btn');
 
-alert('HEEY');
-
 const mainURL =
   /* 'http://localhost:2604'; */ 'https://worried-jumpsuit-toad.cyclic.app';
 
