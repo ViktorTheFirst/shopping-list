@@ -1,11 +1,13 @@
-var inputBox = document.getElementById('input-box');
-var listContainer = document.getElementById('list-container');
-var addBtn = document.getElementById('add-btn');
-var saveBtn = document.getElementById('save-btn');
-var deleteListBtn = document.getElementById('delete-list-btn');
-var refreshBtn = document.getElementById('refresh-btn');
+const inputBox = document.getElementById('input-box');
+const listContainer = document.getElementById('list-container');
+const addBtn = document.getElementById('add-btn');
+const saveBtn = document.getElementById('save-btn');
+const deleteListBtn = document.getElementById('delete-list-btn');
+const refreshBtn = document.getElementById('refresh-btn');
 
-var mainURL =
+alert('HEEY');
+
+const mainURL =
   /* 'http://localhost:2604'; */ 'https://worried-jumpsuit-toad.cyclic.app';
 
 const fetchList = async () => {
@@ -20,12 +22,12 @@ const fetchList = async () => {
 
   if (!list.length) return;
 
-  for (var i = 0; i < list.length; i += 1) {
+  for (let i = 0; i < list.length; i += 1) {
     addItem(list[i].title, list[i].isDone);
   }
 };
 
-async function deleteList() {
+const deleteList = async () => {
   await fetch(`${mainURL}/list`, {
     method: 'DELETE',
     mode: 'cors',
@@ -37,13 +39,12 @@ async function deleteList() {
         'Content-Type, Authorization, X-Requested-With',
     },
   });
-  alert('List was deleted');
   fetchList();
-}
+};
 
-function createArrayFromUl() {
-  var result = [];
-  var listItems = listContainer.getElementsByTagName('li');
+const createArrayFromUl = () => {
+  const result = [];
+  const listItems = listContainer.getElementsByTagName('li');
 
   for (var i = 0; i < listItems.length; i++) {
     result.push({
@@ -53,10 +54,10 @@ function createArrayFromUl() {
   }
 
   return result;
-}
+};
 
-async function saveList() {
-  var updatedList = createArrayFromUl();
+const saveList = async () => {
+  const updatedList = createArrayFromUl();
 
   await fetch(`${mainURL}/list`, {
     method: 'POST',
@@ -70,32 +71,32 @@ async function saveList() {
         'Content-Type, Authorization, X-Requested-With',
     },
   });
-}
+};
 
-function addItem(item, isDone) {
+const addItem = (item, isDone) => {
   if (item === '') return;
-  var li = document.createElement('li');
+  let li = document.createElement('li');
   li.innerHTML = item;
   if (isDone) li.classList.toggle('checked');
   listContainer.appendChild(li);
 
-  var span = document.createElement('span');
+  let span = document.createElement('span');
   span.innerHTML = '\u00d7';
   li.appendChild(span);
   inputBox.value = '';
-}
+};
 
-function handleClick(event) {
+const handleClick = (event) => {
   if (event.target.tagName === 'LI') {
     event.target.classList.toggle('checked');
   } else if (event.target.tagName === 'SPAN') {
     event.target.parentElement.remove();
   }
-}
+};
 
-function handleRefreshClick() {
+const handleRefreshClick = () => {
   fetchList();
-}
+};
 
 fetchList();
 
