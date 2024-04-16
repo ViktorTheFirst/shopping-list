@@ -46,7 +46,7 @@ const createArrayFromUl = () => {
   const result = [];
   const listItems = listContainer.getElementsByTagName('li');
 
-  for (var i = 0; i < listItems.length; i++) {
+  for (let i = 0; i < listItems.length; i++) {
     result.push({
       title: listItems[i].textContent.slice(0, -1),
       isDone: listItems[i].className === 'checked',
