@@ -9,7 +9,9 @@ var mainURL =
   /* 'http://localhost:2604'; */ 'https://worried-jumpsuit-toad.cyclic.app';
 
 async function fetchList() {
-  var response = await fetch(`${mainURL}/list`);
+  var response = await fetch(`${mainURL}/list`, {
+    mode: 'no-cors',
+  });
   var list = await response.json();
 
   while (listContainer.firstChild) {
