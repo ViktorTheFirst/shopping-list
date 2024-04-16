@@ -3,6 +3,9 @@ module.exports = (request, response) => {
     case '/list':
       response.statusCode = 200;
       response.setHeader('Content-Type', 'application/json');
+      response.setHeader('Access-Control-Allow-Origin', '*');
+      response.setHeader('Access-Control-Allow-Headers', '*');
+      response.setHeader('Access-Control-Allow-Methods', '*');
       response.write(JSON.stringify(request.data));
       response.end();
       break;
