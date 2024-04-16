@@ -4,11 +4,12 @@ const port = process.env.PORT || 2604;
 
 const server = http.createServer();
 const get = require('./get');
-const filePath = './tmp/DB.txt';
+const filePath = 'DB.txt';
 
 let data = [];
 
-fs.readFile(filePath, 'utf8', (err, fileData) => {
+// TODO: use file system after my server will be ready
+/* fs.readFile(filePath, 'utf8', (err, fileData) => {
   if (err) {
     console.error('There was an error reading the file:', err);
   } else {
@@ -16,7 +17,7 @@ fs.readFile(filePath, 'utf8', (err, fileData) => {
     const parsedList = JSON.parse(fileData);
     data = parsedList.listData;
   }
-});
+}); */
 
 server.on('request', (request, response) => {
   console.log('Method', request.method);
@@ -40,13 +41,14 @@ server.on('request', (request, response) => {
 
         data = json.listData;
 
-        fs.writeFile(filePath, stringData, (err) => {
+        // TODO: use file system after my server will be ready
+        /* fs.writeFile(filePath, stringData, (err) => {
           if (err) {
             console.error('There was an error writing the file:', err);
           } else {
             console.log('File has been written');
           }
-        });
+        }); */
         response.setHeader('Access-Control-Allow-Origin', '*');
         response.setHeader('Access-Control-Allow-Headers', '*');
         response.setHeader('Access-Control-Allow-Methods', '*');
@@ -57,13 +59,14 @@ server.on('request', (request, response) => {
 
     case 'DELETE':
       data = [];
-      fs.writeFile(filePath, '', (err) => {
+      // TODO: use file system after my server will be ready
+      /* fs.writeFile(filePath, '', (err) => {
         if (err) {
           console.error('There was an error clearing the file:', err);
         } else {
           console.log('File has been cleared');
         }
-      });
+      }); */
       response.setHeader('Access-Control-Allow-Origin', '*');
       response.setHeader('Access-Control-Allow-Headers', '*');
       response.setHeader('Access-Control-Allow-Methods', '*');
