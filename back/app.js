@@ -7,7 +7,7 @@ const get = require('./get');
 
 let data = [];
 
-fs.readFile('DB.txt', 'utf8', (err, fileData) => {
+fs.readFile('tmp/DB.txt', 'utf8', (err, fileData) => {
   if (err) {
     console.error('There was an error reading the file:', err);
   } else {
@@ -39,7 +39,7 @@ server.on('request', (request, response) => {
 
         data = json.listData;
 
-        fs.writeFile('DB.txt', stringData, (err) => {
+        fs.writeFile('tmp/DB.txt', stringData, (err) => {
           if (err) {
             console.error('There was an error writing the file:', err);
           } else {
@@ -56,7 +56,7 @@ server.on('request', (request, response) => {
 
     case 'DELETE':
       data = [];
-      fs.writeFile('DB.txt', '', (err) => {
+      fs.writeFile('tmp/DB.txt', '', (err) => {
         if (err) {
           console.error('There was an error clearing the file:', err);
         } else {
