@@ -1,13 +1,11 @@
-const inputBox = document.getElementById('input-box');
-const listContainer = document.getElementById('list-container');
-const addBtn = document.getElementById('add-btn');
-const saveBtn = document.getElementById('save-btn');
-const deleteListBtn = document.getElementById('delete-list-btn');
-const refreshBtn = document.getElementById('refresh-btn');
+var inputBox = document.getElementById('input-box');
+var listContainer = document.getElementById('list-container');
+var addBtn = document.getElementById('add-btn');
+var saveBtn = document.getElementById('save-btn');
+var deleteListBtn = document.getElementById('delete-list-btn');
+var refreshBtn = document.getElementById('refresh-btn');
 
-alert('HEEY');
-
-const mainURL =
+var mainURL =
   /* 'http://localhost:2604'; */ 'https://worried-jumpsuit-toad.cyclic.app';
 
 const fetchList = async () => {
@@ -22,12 +20,12 @@ const fetchList = async () => {
 
   if (!list.length) return;
 
-  for (let i = 0; i < list.length; i += 1) {
+  for (var i = 0; i < list.length; i += 1) {
     addItem(list[i].title, list[i].isDone);
   }
 };
 
-const deleteList = async () => {
+async function deleteList() {
   await fetch(`${mainURL}/list`, {
     method: 'DELETE',
     mode: 'cors',
@@ -39,12 +37,13 @@ const deleteList = async () => {
         'Content-Type, Authorization, X-Requested-With',
     },
   });
+  alert('List was deleted');
   fetchList();
-};
+}
 
-const createArrayFromUl = () => {
-  const result = [];
-  const listItems = listContainer.getElementsByTagName('li');
+function createArrayFromUl() {
+  var result = [];
+  var listItems = listContainer.getElementsByTagName('li');
 
   for (var i = 0; i < listItems.length; i++) {
     result.push({
@@ -54,10 +53,10 @@ const createArrayFromUl = () => {
   }
 
   return result;
-};
+}
 
-const saveList = async () => {
-  const updatedList = createArrayFromUl();
+async function saveList() {
+  var updatedList = createArrayFromUl();
 
   await fetch(`${mainURL}/list`, {
     method: 'POST',
@@ -71,32 +70,32 @@ const saveList = async () => {
         'Content-Type, Authorization, X-Requested-With',
     },
   });
-};
+}
 
-const addItem = (item, isDone) => {
+function addItem(item, isDone) {
   if (item === '') return;
-  let li = document.createElement('li');
+  var li = document.createElement('li');
   li.innerHTML = item;
   if (isDone) li.classList.toggle('checked');
   listContainer.appendChild(li);
 
-  let span = document.createElement('span');
+  var span = document.createElement('span');
   span.innerHTML = '\u00d7';
   li.appendChild(span);
   inputBox.value = '';
-};
+}
 
-const handleClick = (event) => {
+function handleClick(event) {
   if (event.target.tagName === 'LI') {
     event.target.classList.toggle('checked');
   } else if (event.target.tagName === 'SPAN') {
     event.target.parentElement.remove();
   }
-};
+}
 
-const handleRefreshClick = () => {
+function handleRefreshClick() {
   fetchList();
-};
+}
 
 fetchList();
 
