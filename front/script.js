@@ -6,12 +6,21 @@ const deleteListBtn = document.getElementById('delete-list-btn');
 const refreshBtn = document.getElementById('refresh-btn');
 
 const mainURL =
-  /* 'http://localhost:2604'; */ 'https://worried-jumpsuit-toad.cyclic.app';
+  'http://localhost:2604'; /* 'https://worried-jumpsuit-toad.cyclic.app'; */
 
 const fetchList = async () => {
   const response = await fetch(`${mainURL}/list`, {
-    mode: 'no-cors',
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS, PUT, HEAD',
+      'Access-Control-Allow-Headers':
+        'Content-Type, Authorization, X-Requested-With',
+    },
   });
+
   const list = await response.json();
 
   while (listContainer.firstChild) {
