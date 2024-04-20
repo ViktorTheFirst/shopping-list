@@ -8,7 +8,6 @@ const filePath = 'DB.txt';
 
 let data = [];
 
-// TODO: use file system after my server will be ready
 fs.readFile(filePath, 'utf8', (err, fileData) => {
   if (err) {
     console.error('There was an error reading the file:', err);
