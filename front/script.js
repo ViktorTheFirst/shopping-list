@@ -5,7 +5,7 @@ const saveBtn = document.getElementById('save-btn');
 const deleteListBtn = document.getElementById('delete-list-btn');
 const refreshBtn = document.getElementById('refresh-btn');
 
-const mainURL = 'http://192.168.1.246:2604/'; //'https://worried-jumpsuit-toad.cyclic.app';
+const mainURL = 'http://192.168.1.246:2604'; //'https://worried-jumpsuit-toad.cyclic.app';
 
 const fetchList = async () => {
   const response = await fetch(`${mainURL}/list`, {
