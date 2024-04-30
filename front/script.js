@@ -107,8 +107,11 @@ fetchList();
 
 // prevents scrolling on IOS
 document.ontouchmove = function (event) {
-  event.stopPropagation();
+  event.preventDefault();
 };
+/* document.ontouchmove = function (event) {
+  event.stopPropagation();
+}; */
 
 window.onclick = function (event) {
   if (event.target == modal) {
