@@ -6,6 +6,7 @@ const deleteListBtn = document.getElementById('delete-list-btn');
 const confirmDeleteListBtn = document.getElementById('confirm-delete-btn');
 const refreshBtn = document.getElementById('refresh-btn');
 const modal = document.getElementById('myModal');
+const closeIcon = document.getElementsByClassName('close')[0];
 
 const mainURL = 'https://viktor-indie.com/list';
 // 'http://192.168.1.246:2604'
@@ -99,6 +100,10 @@ const handleClick = (event) => {
   }
 };
 
+const onModalClose = () => {
+  modal.style.display = 'none';
+};
+
 const handleRefreshClick = () => {
   fetchList();
 };
@@ -109,9 +114,6 @@ fetchList();
 document.ontouchmove = function (event) {
   event.preventDefault();
 };
-/* document.ontouchmove = function (event) {
-  event.stopPropagation();
-}; */
 
 window.onclick = function (event) {
   if (event.target == modal) {
@@ -126,5 +128,7 @@ deleteListBtn.addEventListener('click', deleteList);
 confirmDeleteListBtn.addEventListener('click', confirmDeleteList);
 
 refreshBtn.addEventListener('click', handleRefreshClick);
+
+closeIcon.addEventListener('click', onModalClose);
 
 saveBtn.addEventListener('click', saveList);
