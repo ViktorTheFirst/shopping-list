@@ -3,23 +3,27 @@ const listContainer = document.getElementById('list-container');
 const addBtn = document.getElementById('add-btn');
 const saveBtn = document.getElementById('save-btn');
 const deleteListBtn = document.getElementById('delete-list-btn');
+const confirmDeleteListBtn = document.getElementById('confirm-delete-btn');
 const refreshBtn = document.getElementById('refresh-btn');
+const modal = document.getElementById('myModal');
 
 const mainURL = 'https://viktor-indie.com/list';
 // 'http://192.168.1.246:2604'
 //'https://worried-jumpsuit-toad.cyclic.app';
 
+const corsHeaders = {
+  'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS, PUT, HEAD',
+  'Access-Control-Allow-Headers':
+    'Content-Type, Authorization, X-Requested-With',
+};
+
 const fetchList = async () => {
   const response = await fetch(`${mainURL}`, {
     method: 'GET',
     mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS, PUT, HEAD',
-      'Access-Control-Allow-Headers':
-        'Content-Type, Authorization, X-Requested-With',
-    },
+    headers: corsHeaders,
   });
 
   const list = await response.json();
@@ -35,19 +39,18 @@ const fetchList = async () => {
   }
 };
 
-const deleteList = async () => {
+const confirmDeleteList = async () => {
   await fetch(`${mainURL}`, {
     method: 'DELETE',
     mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS, PUT, HEAD',
-      'Access-Control-Allow-Headers':
-        'Content-Type, Authorization, X-Requested-With',
-    },
+    headers: corsHeaders,
   });
+  modal.style.display = 'none';
   fetchList();
+};
+
+const deleteList = async () => {
+  modal.style.display = 'block';
 };
 
 const createArrayFromUl = () => {
@@ -71,13 +74,7 @@ const saveList = async () => {
     method: 'POST',
     mode: 'cors',
     body: JSON.stringify({ listData: updatedList }),
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS, PUT, HEAD',
-      'Access-Control-Allow-Headers':
-        'Content-Type, Authorization, X-Requested-With',
-    },
+    headers: corsHeaders,
   });
 };
 
@@ -108,13 +105,22 @@ const handleRefreshClick = () => {
 
 fetchList();
 
+// prevents scrolling on IOS
 document.ontouchmove = function (event) {
   event.stopPropagation();
+};
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = 'none';
+  }
 };
 
 listContainer.addEventListener('click', handleClick);
 
 deleteListBtn.addEventListener('click', deleteList);
+
+confirmDeleteListBtn.addEventListener('click', confirmDeleteList);
 
 refreshBtn.addEventListener('click', handleRefreshClick);
 
