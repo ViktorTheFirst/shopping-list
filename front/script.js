@@ -6,6 +6,7 @@ const deleteListBtn = document.getElementById('delete-list-btn');
 const confirmDeleteListBtn = document.getElementById('confirm-delete-btn');
 const refreshBtn = document.getElementById('refresh-btn');
 const modal = document.getElementById('myModal');
+const kuzminImage = document.getElementById('kuzmin-img');
 const closeIcon = document.getElementsByClassName('close')[0];
 
 const mainURL = 'https://viktor-indie.com/list';
@@ -19,6 +20,8 @@ const corsHeaders = {
   'Access-Control-Allow-Headers':
     'Content-Type, Authorization, X-Requested-With',
 };
+
+const images = ['kuzmin1', 'kuzmin2', 'kuzmin3'];
 
 const fetchList = async () => {
   const response = await fetch(`${mainURL}`, {
@@ -51,6 +54,7 @@ const confirmDeleteList = async () => {
 };
 
 const deleteList = async () => {
+  kuzminImage.src = getRandomImage();
   modal.style.display = 'block';
 };
 
@@ -66,6 +70,13 @@ const createArrayFromUl = () => {
   }
 
   return result;
+};
+
+const getRandomImage = () => {
+  const randomIndex = Math.floor(Math.random() * images.length);
+  const imgName = images[randomIndex];
+  console.log('imgName', imgName);
+  return 'images/' + imgName + '.png';
 };
 
 const saveList = async () => {
