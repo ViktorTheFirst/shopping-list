@@ -7,7 +7,7 @@
 
 .container {
   width: 100%;
-  max-height: 90vh;
+  min-height: 100vh;
   background: linear-gradient(180deg, #943033 0%, #f6fb84 100%);
   padding: 10px;
 }
@@ -15,6 +15,7 @@
 .top-part {
   width: 100%;
   max-width: 540px;
+  max-height: 70vh;
   background-color: #fff;
   margin: 20px auto 10px;
   padding: 35px 30px 50px;
@@ -34,7 +35,7 @@
   color: #002765;
   display: flex;
   align-items: center;
-  margin: 0 0 20px 60px;
+  margin: 0 0 10px 20px;
   user-select: none;
 }
 
