@@ -7,7 +7,7 @@
 
 .container {
   width: 100%;
-  min-height: 100vh;
+  min-height: 90vh;
   background: linear-gradient(180deg, #943033 0%, #f6fb84 100%);
   padding: 10px;
 }
@@ -116,7 +116,7 @@ input {
 
 #list-container {
   overflow-y: scroll;
-  max-height: 50vh;
+  max-height: 45vh;
 }
 
 ul li {

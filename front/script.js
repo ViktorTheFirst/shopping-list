@@ -108,6 +108,10 @@ const handleRefreshClick = () => {
 
 fetchList();
 
+document.ontouchmove = function (event) {
+  event.stopPropagation();
+};
+
 listContainer.addEventListener('click', handleClick);
 
 deleteListBtn.addEventListener('click', deleteList);
