@@ -9,9 +9,7 @@ const modal = document.getElementById('myModal');
 const kuzminImage = document.getElementById('kuzmin-img');
 const closeIcon = document.getElementsByClassName('close')[0];
 
-const mainURL = 'https://viktor-indie.com/list';
-// 'http://192.168.1.246:2604'
-//'https://worried-jumpsuit-toad.cyclic.app';
+const mainURL = 'http://localhost:2604/list'; //'https://viktor-indie.com/list';
 
 const corsHeaders = {
   'Content-Type': 'application/json',
@@ -75,7 +73,6 @@ const createArrayFromUl = () => {
 const getRandomImage = () => {
   const randomIndex = Math.floor(Math.random() * images.length);
   const imgName = images[randomIndex];
-  console.log('imgName', imgName);
   return 'images/' + imgName + '.png';
 };
 

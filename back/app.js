@@ -7,6 +7,7 @@ const get = require('./get');
 const filePath = 'DB.txt';
 
 let data = [];
+let logs = '';
 
 fs.readFile(filePath, 'utf8', (err, fileData) => {
   if (err) {
@@ -18,10 +19,37 @@ fs.readFile(filePath, 'utf8', (err, fileData) => {
   }
 });
 
+const countItems = (arr) => {
+  return arr.length || 0;
+};
+
 server.on('request', (request, response) => {
-  console.log('Method', request.method);
+  // log every new ip to file
+
+  fs.readFile('LOGS.txt', 'utf8', (err, fileData) => {
+    if (err) {
+      console.error('There was an error reading the logs file:', err);
+    } else {
+      if (!fileData) return;
+      logs = fileData;
+    }
+  });
+  console.log('logs', logs);
+  console.log('logs.included?', logs.includes(request.headers.origin));
+  if (!logs.includes(request.headers.origin.toString())) {
+    fs.appendFile('LOGS.txt', `${request.headers.origin}\n`, (err) => {
+      if (err) {
+        console.error('There was an error writing the logs file:', err);
+      } else {
+        console.log('Log was added');
+      }
+    });
+  }
+
   switch (request.method) {
     case 'GET':
+      console.log('---------------------------------------------');
+      console.log('GET request was sent from: ', request.headers.origin);
       request.data = data;
       get(request, response);
       break;
@@ -39,13 +67,17 @@ server.on('request', (request, response) => {
         const json = JSON.parse(stringData);
 
         data = json.listData;
-
-        // TODO: use file system after my server will be ready
+        console.log('---------------------------------------------');
+        console.log('POST request was sent from: ', request.headers.origin);
         fs.writeFile(filePath, stringData, (err) => {
           if (err) {
             console.error('There was an error writing the file:', err);
           } else {
-            console.log('File has been written');
+            console.log(
+              `File was writen, list is now consists of ${countItems(
+                json.listData
+              )} items`
+            );
           }
         });
         response.setHeader('Access-Control-Allow-Origin', '*');
@@ -58,7 +90,8 @@ server.on('request', (request, response) => {
 
     case 'DELETE':
       data = [];
-      // TODO: use file system after my server will be ready
+      console.log('---------------------------------------------');
+      console.log('List was deleted by: ', request.headers.origin);
       fs.writeFile(filePath, '', (err) => {
         if (err) {
           console.error('There was an error clearing the file:', err);
