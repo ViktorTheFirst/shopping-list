@@ -9,7 +9,8 @@ const modal = document.getElementById('myModal');
 const kuzminImage = document.getElementById('kuzmin-img');
 const closeIcon = document.getElementsByClassName('close')[0];
 
-const mainURL = 'http://localhost:2604/list'; //'https://viktor-indie.com/list';
+const mainURL =
+  /* 'http://localhost:2604/list'; */ 'https://viktor-indie.com/list';
 
 const corsHeaders = {
   'Content-Type': 'application/json',
