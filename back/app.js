@@ -36,7 +36,7 @@ server.on('request', (request, response) => {
   });
   console.log('logs', logs);
   console.log('logs.included?', logs.includes(request.headers.origin));
-  if (!logs.includes(request.headers.origin.toString())) {
+  if (request.headers.origin && !logs.includes(request.headers.origin)) {
     fs.appendFile('LOGS.txt', `${request.headers.origin}\n`, (err) => {
       if (err) {
         console.error('There was an error writing the logs file:', err);
