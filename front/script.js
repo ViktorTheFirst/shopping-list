@@ -99,6 +99,7 @@ const addItem = (item, isDone) => {
   span.innerHTML = '\u00d7';
   li.appendChild(span);
   inputBox.value = '';
+  document.getElementById('input-box').focus();
 };
 
 const handleClick = (event) => {
